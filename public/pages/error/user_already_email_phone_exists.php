@@ -1,1 +1,0 @@
-<p>Un utilisateur possédant la même adresse e-mail ou le même numéro de téléphone existe déjà.</p>

@@ -1,1 +1,0 @@
-<p>Les champs contiennent des caractères spéciaux non valides.</p>

@@ -1,1 +1,0 @@
-<p>Un e-mail de récupération a été envoyé.</p>

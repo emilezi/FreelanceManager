@@ -1,1 +1,0 @@
-<p>Le compte connecté ne peut pas être supprimé car il s'agit d'un compte administrateur</p>
