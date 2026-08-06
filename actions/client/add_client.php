@@ -12,11 +12,25 @@ if(isset($_POST['submit'])){
 
     }elseif($Form->checkClient() == 1){
 
-        include("public/pages/error/invalid_special_character.php");
+        if($Setting->getLanguage() == 'fr'){
+
+            include("public/pages/fr/error/invalid_special_character.php");
+
+        }else{
+
+            include("public/pages/en/error/invalid_special_character.php");
+        }
 
     }else{
 
-        include("public/pages/error/field_not_entered.php");
+        if($Setting->getLanguage() == 'fr'){
+
+            include("public/pages/fr/error/field_not_entered.php");
+
+        }else{
+
+            include("public/pages/en/error/field_not_entered.php");
+        }
 
     }
     

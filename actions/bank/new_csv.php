@@ -1,14 +1,18 @@
 <?php
 
+require 'class/Form.php';
+require 'class/CSV.php';
+
 $Form = new Form();
+$CSV = new CSV();
 
-if(isset($_POST['submit_edit'])){
+if(isset($_POST['submit_csv'])){
 
-    if($Form->checkService() == 0){
+    if($Form->checkCSV() == 0){
 
-        $Service->editService();
+        $CSV->newCSV($Setting, $Bank);
 
-    }elseif($Form->checkService() == 1){
+    }elseif($Form->checkCSV() == 1){
 
         if($Setting->getLanguage() == 'fr'){
 
@@ -17,7 +21,6 @@ if(isset($_POST['submit_edit'])){
         }else{
 
             include("public/pages/en/error/invalid_special_character.php");
-
         }
 
     }else{
@@ -29,7 +32,6 @@ if(isset($_POST['submit_edit'])){
         }else{
 
             include("public/pages/en/error/field_not_entered.php");
-
         }
 
     }

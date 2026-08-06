@@ -413,4 +413,31 @@ class Form{
 
     }
 
+    /**
+        * Check CSV verification form
+        *
+        * @return int if the fields are correctly filled in otherwise return the error number
+        *
+        */
+
+    public function checkCSV(){
+
+        if(
+            !empty($this->post['file_name'])
+            )
+            {
+                if(
+                preg_match("#^[^<>]+$#i", $this->post['file_name'])
+                )
+                {
+                    return 0;
+                }else{
+                    return 1;
+                }
+            }else{
+                return 2;
+            }
+
+    }
+
 }

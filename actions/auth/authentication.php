@@ -16,21 +16,49 @@ if(isset($_POST['submit'])){
 
         }elseif($User -> UserLogin() == 1){
 
-            include("public/pages/error/incorrect_password.php");
+        if($Setting->getLanguage() == 'fr'){
+
+            include("public/pages/fr/error/incorrect_password.php");
 
         }else{
 
-            include("public/pages/error/user_not_found.php");
+            include("public/pages/en/error/incorrect_password.php");
+        }
+
+        }else{
+
+        if($Setting->getLanguage() == 'fr'){
+
+            include("public/pages/fr/error/user_not_found.php");
+
+        }else{
+
+            include("public/pages/en/error/user_not_found.php");
+        }
 
         }
 
     }elseif($Form->Authentication() == 1){
 
-        include("public/pages/error/invalid_special_character.php");
+        if($Setting->getLanguage() == 'fr'){
+
+            include("public/pages/fr/error/invalid_special_character.php");
+
+        }else{
+
+            include("public/pages/en/error/invalid_special_character.php");
+        }
 
     }else{
 
-        include("public/pages/error/field_not_entered.php");
+        if($Setting->getLanguage() == 'fr'){
+
+            include("public/pages/fr/error/field_not_entered.php");
+
+        }else{
+
+            include("public/pages/en/error/field_not_entered.php");
+        }
 
     }
     

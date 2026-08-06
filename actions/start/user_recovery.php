@@ -16,21 +16,50 @@ if(isset($_POST['submit'])){
 
             $Mail->MailRecovery();
 
-            include("public/pages/message/recovery_email_sent.php");
+            if($Setting->getLanguage() == 'fr'){
+
+                include("public/pages/fr/message/recovery_email_sent.php");
+
+            }else{
+
+                include("public/pages/en/message/recovery_email_sent.php");
+            }
 
         }else{
 
-            include("public/pages/error/user_not_found.php");
+            if($Setting->getLanguage() == 'fr'){
+
+                include("public/pages/fr/error/user_not_found.php");
+
+            }else{
+
+                include("public/pages/en/error/user_not_found.php");
+            }
 
         }
 
     }elseif($Form->checkEmail() == 1){
 
-        include("public/pages/error/invalid_special_character.php");
+        if($Setting->getLanguage() == 'fr'){
+
+            include("public/pages/fr/error/invalid_special_character.php");
+
+        }else{
+
+            include("public/pages/en/error/invalid_special_character.php");
+        }
 
     }else{
 
-        include("public/pages/error/field_not_entered.php");
+        if($Setting->getLanguage() == 'fr'){
+
+            include("public/pages/fr/error/field_not_entered.php");
+
+        }else{
+
+            include("public/pages/en/error/field_not_entered.php");
+
+        }
 
     }
     

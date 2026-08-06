@@ -24,17 +24,41 @@ if(isset($_POST['submit'])){
 
         }else{
 
-            include("public/pages/error/password_not_identical.php");
+            if($Setting->getLanguage() == 'fr'){
+
+                include("public/pages/fr/error/password_not_identical.php");
+
+            }else{
+
+                include("public/pages/en/error/password_not_identical.php");
+
+            }
 
         }
 
     }elseif($Form->newUser() == 1){
 
-        include("public/pages/error/invalid_special_character.php");
+        if($Setting->getLanguage() == 'fr'){
+
+            include("public/pages/fr/error/invalid_special_character.php");
+
+        }else{
+
+            include("public/pages/en/error/invalid_special_character.php");
+
+        }
 
     }else{
 
-        include("public/pages/error/field_not_entered.php");
+        if($Setting->getLanguage() == 'fr'){
+
+            include("public/pages/fr/error/field_not_entered.php");
+
+        }else{
+
+            include("public/pages/en/error/field_not_entered.php");
+
+        }
 
     }
     

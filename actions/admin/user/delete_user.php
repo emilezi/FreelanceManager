@@ -9,8 +9,16 @@ if(isset($_POST['submit_delete'])){
         $User->deleteUsers();
 
     }else{
-        
-        include("public/pages/error/user_delete.php");
+
+    if($Setting->getLanguage() == 'fr'){
+
+        include("public/pages/fr/error/user_delete.php");
+
+    }else{
+
+        include("public/pages/en/error/user_delete.php");
+
+    }
     
     }
 

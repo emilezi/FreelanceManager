@@ -13,17 +13,41 @@ if(isset($_POST['submit_edit'])){
 
         }else{
 
-            include("public/pages/error/user_already_email_phone_exists.php");
+        if($Setting->getLanguage() == 'fr'){
+
+            include("public/pages/fr/error/user_already_email_phone_exists.php");
+
+        }else{
+
+            include("public/pages/en/error/user_already_email_phone_exists.php");
+
+        }
 
         }
 
     }elseif($Form->editUser() == 1){
 
-        include("public/pages/error/invalid_special_character.php");
+    if($Setting->getLanguage() == 'fr'){
+
+            include("public/pages/fr/error/invalid_special_character.php");
+
+        }else{
+
+            include("public/pages/en/error/invalid_special_character.php");
+
+        }
 
     }else{
 
-        include("public/pages/error/field_not_entered.php");
+    if($Setting->getLanguage() == 'fr'){
+
+            include("public/pages/fr/error/field_not_entered.php");
+
+        }else{
+
+            include("public/pages/en/error/field_not_entered.php");
+
+        }
 
     }
     
