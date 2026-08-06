@@ -1,0 +1,1 @@
+<p>A recovery email has been sent.</p>

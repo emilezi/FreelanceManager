@@ -1,0 +1,1 @@
+<p>The fields contain invalid special characters.</p>

@@ -1,0 +1,162 @@
+<?php
+
+require("class/Bank.php");
+
+$Bank = new Bank();
+
+require("actions/bank/new_csv.php");
+
+$bankinfo = $Bank->getBank();
+$annualturnover = $Bank->getAnnualTurnover($Setting);
+$turnovermax = $Setting->getTurnoverMax();
+$startmonthlydate = $Setting->getMonthlyTaxDateStart();
+$endmonthlydate = $Setting->getMonthlyTaxDateEnd();
+$startquarterlydate = $Setting->getQuarterlyTaxDateStart();
+$endquarterlydate = $Setting->getQuarterlyTaxDateEnd();
+$turnoverbic1 = $Bank->getTurnoverBIC1($Setting);
+$turnoverbic2 = $Bank->getTurnoverBIC2($Setting);
+$turnoverbnc = $Bank->getTurnoverBNC($Setting);
+$bic1liberatorypayment = $Bank->getBIC1LiberatoryPayment($Setting);
+$bic2liberatorypayment = $Bank->getBIC2LiberatoryPayment($Setting);
+$bncliberatorypayment = $Bank->getBNCLiberatoryPayment($Setting);
+$liberalprofessionaltraining = $Bank->getLiberalProfessionalTraining($Setting);
+$amountbic1 = $Bank->getAmountBIC1($Setting);
+$amountbic2 = $Bank->getAmountBIC2($Setting);
+$amountbnc = $Bank->getAmountBNC($Setting);
+$amountbic1pay = $Bank->getAmountBIC1Pay($Setting);
+$amountbic2pay = $Bank->getAmountBIC2Pay($Setting);
+$amountbncpay = $Bank->getAmountBNCPay($Setting);
+$amountproftraining = $Bank->getAmountProfessionalTraining($Setting);
+
+?>
+
+<div class="container">
+    <div class="section">
+      
+    <div class="row">
+
+        <div class="col s12 m12">
+        <div class="icon-block">
+
+        <div class='offset-m2 l6 offset-l3'>
+          <div class='card-panel grey lighten-5 z-depth-1'>
+            <div class='row valign-wrapper'>
+              <div class='col s12'>
+                <span class='black-text'>
+                    <h3>Banque</h3>
+                    <p>Montant de la trésorerie : <?=$bankinfo['treasury']?>€</p>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class='offset-m2 l6 offset-l3'>
+          <div class='card-panel grey lighten-5 z-depth-1'>
+            <div class='row valign-wrapper'>
+              <div class='col s12'>
+                <span class='black-text'>
+                    <h5>Chiffre d'affaire :</h5>
+                    <p>Montant total annuel: <?=$annualturnover?>€</p>
+                    <p>Montant BIC-1 : <?=$turnoverbic1?>€</p>
+                    <p>Montant BIC-2 : <?=$turnoverbic2?>€</p>
+                    <p>Montant BNC : <?=$turnoverbnc?>€</p>
+                    <p>Montant maximum annuel  : <?=$turnovermax?>€ hors taxes</p>
+                    <?php
+                    if($_SESSION['taxation'] === 'month'){
+                      echo "<p><b>Début de la prochaine imposition : </b></p>";
+                      echo "<p>Date : ".$startmonthlydate."</p>";
+                      echo "<p><b>Fin de la prochaine imposition : </b></p>";
+                      echo "<p>Date : ".$endmonthlydate."</p>";
+                    }elseif($_SESSION['taxation'] === 'quarterly'){
+                      echo "<p><b>Début de la prochaine imposition : </b></p>";
+                      echo "<p>Date : ".$startquarterlydate."</p>";
+                      echo "<p><b>Fin de la prochaine imposition : </b></p>";
+                      echo "<p>Date : ".$endquarterlydate."</p>";
+                    }
+                    ?>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class='offset-m2 l6 offset-l3'>
+          <div class='card-panel grey lighten-5 z-depth-1'>
+            <div class='row valign-wrapper'>
+              <div class='col s12'>
+                <span class='black-text'>
+                    <h5>Charges :</h5>
+                    <p>Versement liberatoire BIC-1 : <?=$bic1liberatorypayment?>€</p>
+                    <p>Versement liberatoire BIC-2 : <?=$bic2liberatorypayment?>€</p>
+                    <p>Versement liberatoire BNC : <?=$bncliberatorypayment?>€</p>
+                    <p>Formation prof.liberale : <?=$liberalprofessionaltraining?>€</p>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class='offset-m2 l6 offset-l3'>
+          <div class='card-panel grey lighten-5 z-depth-1'>
+            <div class='row valign-wrapper'>
+              <div class='col s12'>
+                <span class='black-text'>
+                    <h5>Taux d'imposition actuel</h5>
+                    <p><b>Activité achat-vente de marchandises (BIC-1) : <?=$Setting->getBIC1Rate()?>%</b></p>
+                    <p>Montant à déclarer : <?=$amountbic1?>€</p>
+                    <p><b>Prestations de services commerciales et artisanales (BIC-2) : <?=$Setting->getBIC2Rate()?>%</b></p>
+                    <p>Montant à déclarer : <?=$amountbic2?>€</p>
+                    <p><b>Prestations de services et professions libérales (BNC) : <?=$Setting->getBNCRate()?>%</b></p>
+                    <p>Montant à déclarer : <?=$amountbnc?>€</p>
+                    <p><b>Versement liberatoire de l'impot sur le revenu (Prestations BIC) : <?=$Setting->getBIC1PayRate()?>%</b></p>
+                    <p>Montant à déclarer : <?=$amountbic1pay?>€</p>
+                    <p><b>Versement liberatoire de l'impot sur le revenu (vente BIC) : <?=$Setting->getBIC2PayRate()?>%</b></p>
+                    <p>Montant à déclarer : <?=$amountbic2pay?>€</p>
+                    <p><b>Versement liberatoire de l'impot sur le revenu (Prestations BNC) : <?=$Setting->getBNCPayRate()?>%</b></p>
+                    <p>Montant à déclarer : <?=$amountbncpay?>€</p>
+                    <p><b>Formation prof.liberale obligatoire : <?=$Setting->getProfessionalTrainingRate()?>%</b></p>
+                    <p>Montant à déclarer : <?=$amountproftraining?>€</p>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class='offset-m2 l6 offset-l3'>
+          <div class='card-panel grey lighten-5 z-depth-1'>
+            <div class='row valign-wrapper'>
+              <div class='col s12'>
+                <span class='black-text'>
+                    <h5>Format CSV</h5>
+                    <a class='waves-effect waves-light btn modal-trigger' data-target='modal_csv'>Exporter au format CSV</a>
+                </span>
+              </div>
+            </div>
+            <p><a href="resources/csv/">Emplacement</a></p>
+          </div>
+        </div>
+        </div>
+        </div>
+    
+    </div>
+
+    </div>
+</div>
+
+<div id='modal_csv' class='modal modal-fixed-footer'>
+    <form class='col s6' method='post'>
+    <div class='modal-content'>
+      <h4>Exportation CSV</h4>
+      <div class='row'>
+        <div class='input-field col s12'>
+          <input name='file_name' id='file_name' type='text' class='validate'>
+          <label for='file_name'>Nom du fichier</label>
+        </div>
+      </div>
+    </div>
+    <div class='modal-footer'>
+        <input class='waves-effect waves-light btn' id='submit_csv' type='submit' name='submit_csv' value='Créer' class='validate'>
+    </div>
+    </form>
+</div>

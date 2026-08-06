@@ -1,0 +1,1 @@
+<p>A user with the same SIREN number, SIRET number, identifier, or email address already exists.</p>

@@ -1,0 +1,1 @@
+<p>The connected account cannot be deleted because it is an administrator account.</p>
